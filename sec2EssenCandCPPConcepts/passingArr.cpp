@@ -1,22 +1,27 @@
 #include <iostream>
 using namespace std;
 
-void fun(int A[]){ //remember then by default arrays are passed by address, therefore
-    for(int a:A){   //line 4 is just a POINTER to the beginning of the array
-                    //therefore here the A that is passed in the for each loop will error
-                    //because you can't iterate through a pointer
-        cout << a << endl;
-    }
+//int * will return a pointer to an int, with arrays you should pass the size
+int * func(int size){
+    int *p;
+    p = new int [size]; //create an array on the heap
+
+    for(int i = 0; i < size; i++){
+        p[i] = i + 1;
+    }//fill the array will 1,2,3,4,5
+
+    return p; //return the array
 }
 
 int main(){
 
-    int A[]={2,4,6,8,10};
-    int n =5;
+    int *ptr;
+    int sz = 5;
 
-    for(int x: A){
-        cout << x;
+    ptr = func(sz);
+    for(int i =0;i<sz;i++){
+        cout << ptr[i] << endl;
     }
-
+    
     return 0;
 }
